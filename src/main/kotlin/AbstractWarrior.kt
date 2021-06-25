@@ -8,13 +8,14 @@ abstract class AbstractWarrior(
 ) : Warrior {
     private var currentHp: Int = maxHP
 
-    //TODO проверить попадания
+    //TODO проверить попадания (+/-)
     override fun attack(warrior: Warrior) {
         if (!weapon.availabilityAmmunition) {
             weapon.recharge()
         } else {
             weapon.patronShot()
             if (checkHit()){
+                val dmg = summaryDamage()
             }
         }
     }
@@ -26,7 +27,9 @@ abstract class AbstractWarrior(
     private fun checkHit(): Boolean {
         return Random.nextDouble(0.0,1.0) in chanceAvoidHit..accuracy
     }
-    private fun summaryDamage() {
-        weapon.currentListAmmunition[i].getDamage()
+
+    //TODO невереный подсчет урона
+    private fun summaryDamage(): Double {
+        return weapon.currentListAmmunition[0].getDamage()
     }
 }
